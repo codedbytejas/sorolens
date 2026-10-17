@@ -1,8 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  buildSubscriptionRequest,
-  formatTestPayload,
-} from "./notifications";
+import { buildSubscriptionRequest, formatTestPayload } from "./notifications";
 
 const contract = "cabqgaydambqgaydambqgaydambqgaydambqgaydambqgaydambqgck3";
 

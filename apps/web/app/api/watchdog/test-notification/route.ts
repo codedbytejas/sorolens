@@ -39,7 +39,8 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         success: false,
-        error: "channel_type must be one of: slack, discord, pagerduty, webhook",
+        error:
+          "channel_type must be one of: slack, discord, pagerduty, webhook",
       },
       { status: 400 }
     );

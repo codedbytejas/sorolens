@@ -1,4 +1,10 @@
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ContractPicker } from "./ContractPicker";
 import type { MonitoredContract } from "@/lib/types";
@@ -169,7 +175,9 @@ describe("ContractPicker", () => {
     const searchInput = screen.getByTestId("contract-picker-search");
     fireEvent.change(searchInput, { target: { value: "Yield" } });
 
-    expect(screen.queryByText("Stellar Liquidity Pool")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("Stellar Liquidity Pool")
+    ).not.toBeInTheDocument();
     expect(screen.getByText("Yield Optimizer Vault")).toBeInTheDocument();
   });
 

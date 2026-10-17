@@ -1,4 +1,10 @@
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import NotificationsPage from "./page";
 import type { AlertSubscription, MonitoredContract } from "@/lib/types";
@@ -25,15 +31,20 @@ const mockGetUserId = vi.fn();
 
 vi.mock("@/lib/api", () => ({
   ApiError: class ApiError extends Error {
-    constructor(public status: number, message: string) {
+    constructor(
+      public status: number,
+      message: string
+    ) {
       super(message);
     }
   },
   listSubscriptions: (...args: unknown[]) => mockListSubscriptions(...args),
   createSubscription: (...args: unknown[]) => mockCreateSubscription(...args),
   deleteSubscription: (...args: unknown[]) => mockDeleteSubscription(...args),
-  sendTestNotification: (...args: unknown[]) => mockSendTestNotification(...args),
-  listMonitoredContracts: (...args: unknown[]) => mockListMonitoredContracts(...args),
+  sendTestNotification: (...args: unknown[]) =>
+    mockSendTestNotification(...args),
+  listMonitoredContracts: (...args: unknown[]) =>
+    mockListMonitoredContracts(...args),
 }));
 
 vi.mock("@/lib/user", () => ({
@@ -100,7 +111,9 @@ describe("NotificationsPage", () => {
 
     await waitFor(() => {
       expect(mockEnsureSession).toHaveBeenCalledTimes(1);
-      expect(mockListSubscriptions).toHaveBeenCalledWith("user_bootstrapped_123");
+      expect(mockListSubscriptions).toHaveBeenCalledWith(
+        "user_bootstrapped_123"
+      );
     });
   });
 
@@ -145,13 +158,17 @@ describe("NotificationsPage", () => {
     fireEvent.click(screen.getByRole("radio", { name: "Info" }));
 
     // Type destination
-    const destInput = screen.getByPlaceholderText("https://discord.com/api/webhooks/…");
+    const destInput = screen.getByPlaceholderText(
+      "https://discord.com/api/webhooks/…"
+    );
     fireEvent.change(destInput, {
       target: { value: "https://discord.com/api/webhooks/1/secret" },
     });
 
     // Submit form
-    fireEvent.click(screen.getByRole("button", { name: "Add Discord channel" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "Add Discord channel" })
+    );
 
     await waitFor(() => {
       expect(mockCreateSubscription).toHaveBeenCalledWith(
@@ -187,7 +204,9 @@ describe("NotificationsPage", () => {
     fireEvent.click(screen.getByTestId("contract-picker-item"));
 
     // Enter destination
-    const destInput = screen.getByPlaceholderText("https://hooks.slack.com/services/…");
+    const destInput = screen.getByPlaceholderText(
+      "https://hooks.slack.com/services/…"
+    );
     fireEvent.change(destInput, {
       target: { value: "https://hooks.slack.com/services/T/B/X" },
     });
@@ -224,7 +243,9 @@ describe("NotificationsPage", () => {
     fireEvent.click(screen.getByTestId("contract-picker-item"));
 
     // Enter destination
-    const destInput = screen.getByPlaceholderText("https://hooks.slack.com/services/…");
+    const destInput = screen.getByPlaceholderText(
+      "https://hooks.slack.com/services/…"
+    );
     fireEvent.change(destInput, {
       target: { value: "https://hooks.slack.com/services/T/B/X" },
     });
@@ -253,9 +274,14 @@ describe("NotificationsPage", () => {
     fireEvent.click(screen.getByText("Remove"));
 
     await waitFor(() => {
-      expect(mockDeleteSubscription).toHaveBeenCalledWith("sub_1", "user_bootstrapped_123");
+      expect(mockDeleteSubscription).toHaveBeenCalledWith(
+        "sub_1",
+        "user_bootstrapped_123"
+      );
       expect(screen.queryByText("Remove")).not.toBeInTheDocument();
-      expect(screen.getByText(/No notification channels yet/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/No notification channels yet/)
+      ).toBeInTheDocument();
     });
   });
 });

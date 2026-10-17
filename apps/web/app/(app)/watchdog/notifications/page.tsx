@@ -19,10 +19,7 @@ import {
 import { ensureSession, getUserId } from "@/lib/user";
 import { TableSkeleton } from "@/components/Skeleton";
 import { ContractPicker } from "@/components/ContractPicker";
-import type {
-  AlertSubscription,
-  ChannelType,
-} from "@/lib/types";
+import type { AlertSubscription, ChannelType } from "@/lib/types";
 
 const STORAGE_KEY = "sorolens_user_id";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
@@ -334,7 +331,8 @@ export default function NotificationsPage() {
             ))}
           </div>
           <span className="text-xs text-[var(--color-text-secondary)]">
-            {severity === "Critical" && "Deliver only Critical watchdog alerts."}
+            {severity === "Critical" &&
+              "Deliver only Critical watchdog alerts."}
             {severity === "Warning" &&
               "Deliver Warning and Critical watchdog alerts."}
             {severity === "Info" &&
@@ -467,8 +465,8 @@ export default function NotificationsPage() {
                           s.severity_filter === "Critical"
                             ? "border border-red-500/20 bg-red-500/10 text-red-400"
                             : s.severity_filter === "Warning"
-                            ? "border border-amber-500/20 bg-amber-500/10 text-amber-400"
-                            : "border border-blue-500/20 bg-blue-500/10 text-blue-400"
+                              ? "border border-amber-500/20 bg-amber-500/10 text-amber-400"
+                              : "border border-blue-500/20 bg-blue-500/10 text-blue-400"
                         }`}
                       >
                         {s.severity_filter || "Critical"}

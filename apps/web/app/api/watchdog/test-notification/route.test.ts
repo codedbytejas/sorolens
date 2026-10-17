@@ -154,7 +154,9 @@ describe("POST /api/watchdog/test-notification", () => {
   });
 
   it("handles network failure gracefully", async () => {
-    const mockFetch = vi.fn().mockRejectedValue(new Error("Connection refused"));
+    const mockFetch = vi
+      .fn()
+      .mockRejectedValue(new Error("Connection refused"));
     globalThis.fetch = mockFetch;
 
     const res = await POST(

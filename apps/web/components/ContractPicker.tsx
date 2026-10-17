@@ -137,7 +137,9 @@ export function ContractPicker({
           }}
           data-testid="contract-picker-trigger"
           className={`flex min-h-[42px] w-full cursor-pointer items-center justify-between rounded-md border border-[var(--color-border)] bg-[var(--color-bg-card)] px-3 py-2 text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)] ${
-            disabled ? "cursor-not-allowed opacity-50" : "hover:border-[var(--color-text-secondary)]"
+            disabled
+              ? "cursor-not-allowed opacity-50"
+              : "hover:border-[var(--color-text-secondary)]"
           }`}
         >
           {value ? (
@@ -235,7 +237,8 @@ export function ContractPicker({
                         }
                         className="mt-2 text-xs text-[var(--color-accent)] underline hover:opacity-80"
                       >
-                        Use &ldquo;{searchQuery.trim().toUpperCase()}&rdquo; directly
+                        Use &ldquo;{searchQuery.trim().toUpperCase()}&rdquo;
+                        directly
                       </button>
                     )}
                   </>

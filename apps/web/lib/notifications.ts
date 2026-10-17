@@ -168,8 +168,8 @@ export function formatTestPayload(params: {
         severity === "Critical"
           ? 0xef4444
           : severity === "Warning"
-          ? 0xf59e0b
-          : 0x3b82f6;
+            ? 0xf59e0b
+            : 0x3b82f6;
       return {
         url: destination,
         headers: { "Content-Type": "application/json" },
@@ -201,8 +201,8 @@ export function formatTestPayload(params: {
         severity === "Critical"
           ? "critical"
           : severity === "Warning"
-          ? "warning"
-          : "info";
+            ? "warning"
+            : "info";
 
       return {
         url,
